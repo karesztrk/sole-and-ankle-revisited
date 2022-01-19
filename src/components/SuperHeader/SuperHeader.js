@@ -32,6 +32,15 @@ const Wrapper = styled.div`
   height: 40px;
   padding-left: 32px;
   padding-right: 32px;
+
+  @media ${props => props.theme.queries.phoneAndBelow} {
+    display: block;
+    height: 4px;
+
+    & > * {
+      display: none;
+    }
+  }
 `;
 
 const MarketingMessage = styled.span`

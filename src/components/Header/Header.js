@@ -5,6 +5,7 @@ import { COLORS, WEIGHTS } from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
+import Icon from '../Icon';
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -29,7 +30,13 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
-        <Side />
+        <Side>
+          <MobileNav>
+            <Icon id="shopping-bag" strokeWidth={2} />
+            <Icon id="search" strokeWidth={2} />
+            <Icon id="menu" strokeWidth={2} />
+          </MobileNav>
+        </Side>
       </MainHeader>
 
       <MobileMenu
@@ -46,12 +53,30 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  @media ${props => props.theme.queries.tabletAndBelow} {
+    align-items: center;
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+
+  @media ${props => props.theme.queries.tabletAndBelow} {
+    display: none;
+  }
+`;
+
+const MobileNav = styled.nav`
+  display: none;
+  
+  @media ${props => props.theme.queries.tabletAndBelow} {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5vw;
+  }
 `;
 
 const Side = styled.div`
