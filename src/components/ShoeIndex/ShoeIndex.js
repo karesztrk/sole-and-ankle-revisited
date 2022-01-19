@@ -15,14 +15,16 @@ const ShoeIndex = ({ sortId, setSortId }) => {
       <MainColumn>
         <Header>
           <Title>Running</Title>
-          <Select
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
-          </Select>
+          <SortOptions>
+            <Select
+              label="Sort"
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value="newest">Newest Releases</option>
+              <option value="price">Price</option>
+            </Select>
+          </SortOptions>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
@@ -35,8 +37,10 @@ const ShoeIndex = ({ sortId, setSortId }) => {
             Shoes
           </Breadcrumbs.Crumb>
         </Breadcrumbs>
-        <Spacer size={42} />
-        <ShoeSidebar />
+        <Categories>
+          <Spacer size={42} />
+          <ShoeSidebar />
+        </Categories>
       </LeftColumn>
     </Wrapper>
   );
@@ -47,10 +51,31 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   align-items: baseline;
   gap: 32px;
+
+  @media ${props => props.theme.queries.tabletAndBelow} {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
 `;
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
+
+  @media ${props => props.theme.queries.tabletAndBelow} {
+    flex-basis: 0;
+  }
+`;
+
+const Categories = styled.div`
+  @media ${props => props.theme.queries.tabletAndBelow} {
+    display: none;
+  }
+`;
+
+const SortOptions = styled.div`
+  @media ${props => props.theme.queries.phoneAndBelow} {
+    display: none;
+  }
 `;
 
 const MainColumn = styled.div`
