@@ -10,11 +10,6 @@ import Icon from '../Icon';
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
 
-  // For our mobile hamburger menu, we'll want to use a button
-  // with an onClick handler, something like this:
-  //
-  // <button onClick={() => setShowMobileMenu(true)}>
-
   return (
     <header>
       <SuperHeader />
@@ -32,9 +27,15 @@ const Header = () => {
         </Nav>
         <Side>
           <MobileNav>
-            <Icon id="shopping-bag" strokeWidth={2} />
-            <Icon id="search" strokeWidth={2} />
-            <Icon id="menu" strokeWidth={2} />
+            <NavItem>
+              <Icon id="shopping-bag" strokeWidth={2} />
+            </NavItem>
+            <NavItem>
+              <Icon id="search" strokeWidth={2} />
+            </NavItem>
+            <NavItem onClick={() => setShowMobileMenu(true)}>
+              <Icon id="menu" strokeWidth={2} />
+            </NavItem>
           </MobileNav>
         </Side>
       </MainHeader>
@@ -93,6 +94,11 @@ const NavLink = styled.a`
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+`;
+
+const NavItem = styled.button`
+  background: none;
+  border: none;
 `;
 
 export default Header;
